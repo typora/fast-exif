@@ -10,4 +10,9 @@ describe('fast-exif', function () {
 			info.exif.ApertureValue.should.eql(4.65625);
 		}).then(done).catch(done);
 	});
+	it('should not hang up if no exif found', function (done) {
+		exif.read(__dirname + '/img_1771_no_exif.jpg').then(function (info) {
+			should(info).eql(null);
+		}).then(done).catch(done);
+	});
 });
