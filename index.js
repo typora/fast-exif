@@ -16,7 +16,9 @@ function readExif (filename) {
 	return open(filename, 'r').then(function (fd) {
 		var buffer = new Buffer(512);
 		return searchExif(fd, buffer, 0)
-			.then(exifReader)
+			.then(function (exifBuffer) {
+				return exifBuffer && exifReader(exifBuffer);
+			})
 			.tap(function () {
 				return close(fd);
 			});
@@ -25,7 +27,10 @@ function readExif (filename) {
 
 function searchExif (fd, buffer, fileOffset) {
 	var offset = 0, length = buffer.length;
-	return read(fd, buffer, 0, length, null).then(function () {
+	return read(fd, buffer, 0, length, null).then(function (bytesRead) {
+		if (!bytesRead) {
+			return null;
+		}
 		while (offset < length) {
 			if (buffer[offset++] == 0xFF && buffer[offset++] == 0xE1) {
 				var exifBuffer = new Buffer(buffer.readUInt16BE(offset));
