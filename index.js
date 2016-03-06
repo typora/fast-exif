@@ -12,10 +12,10 @@ module.exports = {
 	read: readExif
 };
 
-function readExif (filename) {
+function readExif (filename, isDeepSearch) {
 	return open(filename, 'r').then(function (fd) {
 		var buffer = new Buffer(512);
-		return searchExif(fd, buffer, 0)
+		return searchExif(fd, buffer, 0, isDeepSearch)
 			.then(function (exifBuffer) {
 				return exifBuffer && exifReader(exifBuffer);
 			})
@@ -25,7 +25,7 @@ function readExif (filename) {
 	});
 }
 
-function searchExif (fd, buffer, fileOffset) {
+function searchExif (fd, buffer, fileOffset, isDeepSearch) {
 	var offset = 0, length = buffer.length;
 	return read(fd, buffer, 0, length, null).then(function (bytesRead) {
 		if (!bytesRead) {
@@ -37,6 +37,6 @@ function searchExif (fd, buffer, fileOffset) {
 				return read(fd, exifBuffer, 0, exifBuffer.length, fileOffset + offset + 2).return(exifBuffer);
 			}
 		}
-		return searchExif(fd, buffer, fileOffset + length);
+		return isDeepSearch ? searchExif(fd, buffer, fileOffset + length) : null;
 	});
 }
