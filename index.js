@@ -37,6 +37,6 @@ function searchExif (fd, buffer, fileOffset, isDeepSearch) {
 				return read(fd, exifBuffer, 0, exifBuffer.length, fileOffset + offset + 2).return(exifBuffer);
 			}
 		}
-		return isDeepSearch ? searchExif(fd, buffer, fileOffset + length) : null;
+		return isDeepSearch ? searchExif(fd, buffer, fileOffset + length, isDeepSearch) : null;
 	});
 }
