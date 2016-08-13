@@ -14,7 +14,7 @@
     "should": "^8.2.2"
   },
   "scripts": {
-    "test": "istanbul cover _mocha -- tests --recursive -R spec && cat ./coverage/lcov.info | coveralls"
+    "test": "istanbul cover _mocha -- tests --recursive -R spec"
   },
   "repository": {
     "type": "git",
