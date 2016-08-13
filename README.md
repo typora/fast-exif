@@ -1,7 +1,6 @@
 # fast-exif
 
 [![Build Status](https://travis-ci.org/titarenko/fast-exif.svg?branch=master)](https://travis-ci.org/titarenko/fast-exif)
-titarenko/fast-exif?branch=master)
 
 Because you do not need to read megabytes of JPEG to obtain EXIF. 512 bytes should be enough.
 
