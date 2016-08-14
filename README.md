@@ -65,13 +65,13 @@ Because [most popular npm module for exif](https://www.npmjs.com/package/exif) [
 
 If `fast-exif` returned `null` instead of object with EXIF info, then
 
-1) either file does not have any EXIF info
-2) or EXIF marker is located outside of first 512 bytes
+* either file does not have any EXIF info
+* or EXIF marker is located outside of first 512 bytes
 
 In such case
 
-a) specify number of 512-byte blocks to examine while searching for EXIF (`exif.read('my.jpeg', 20)`)
-b) or specify `true` for unlimited (to the end of file) search (`exif.read('my.jpeg', true)`)
+* specify number of 512-byte blocks to examine while searching for EXIF (`exif.read('my.jpeg', 20)`)
+* or specify `true` for unlimited (to the end of file) search (`exif.read('my.jpeg', true)`)
 
 ## License
 
