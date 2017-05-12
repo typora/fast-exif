@@ -1,6 +1,6 @@
 {
   "name": "fast-exif",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "Fast EXIF extraction without reading whole file into memory.",
   "main": "index.js",
   "dependencies": {
@@ -14,7 +14,8 @@
     "should": "^8.2.2"
   },
   "scripts": {
-    "test": "istanbul cover _mocha -- tests --recursive -R spec"
+    "test": "istanbul cover _mocha -- tests --recursive -R spec",
+    "release": "npm t && npm version patch && npm publish && git push"
   },
   "repository": {
     "type": "git",
