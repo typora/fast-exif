@@ -15,4 +15,9 @@ describe('fast-exif', function () {
 			should(info).eql(null);
 		}).then(done).catch(done);
 	});
+	it('should not skip exif if 0xFF byte precedes marker (issue #2)', function (done) {
+		exif.read(__dirname + '/issue2.jpg', true).then(function (info) {
+			info.exif.ApertureValue.should.eql(5.655638);
+		}).then(done).catch(done);
+	});
 });

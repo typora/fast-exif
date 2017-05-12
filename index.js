@@ -38,8 +38,8 @@ function searchExif (fd, buffer, fileOffset, remainingIterations) {
 			return null;
 		}
 		while (offset < length) {
-			if (buffer[offset++] == 0xFF && buffer[offset++] == 0xE1) {
-				var exifBuffer = new Buffer(buffer.readUInt16BE(offset));
+			if (buffer[offset++] == 0xFF && buffer[offset] == 0xE1) {
+				var exifBuffer = new Buffer(buffer.readUInt16BE(++offset));
 				return read(fd, exifBuffer, 0, exifBuffer.length, fileOffset + offset + 2).return(exifBuffer);
 			}
 		}
