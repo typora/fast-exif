@@ -4,7 +4,6 @@
   "description": "Fast EXIF extraction without reading whole file into memory.",
   "main": "index.js",
   "dependencies": {
-    "bluebird": "^3.3.3",
     "exif-reader": "^1.0.0"
   },
   "devDependencies": {
