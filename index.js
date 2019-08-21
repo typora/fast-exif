@@ -1,15 +1,15 @@
 'use strict';
 
-var Promise = require('bluebird');
+var promisify = require('util').promisify;
 var fs = require('fs');
 var exifReader = require('exif-reader');
 
-var open = Promise.promisify(fs.open);
-var read = Promise.promisify(fs.read);
-var close = Promise.promisify(fs.close);
+var open = promisify(fs.open);
+var read = promisify(fs.read);
+var close = promisify(fs.close);
 
 module.exports = {
-	read: readExif
+  read: readExif
 };
 
 function readExif (filename, maxIterations) {
